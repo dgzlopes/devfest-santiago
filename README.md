@@ -53,7 +53,7 @@ Useful links: [Slides](https://docs.google.com/presentation/d/18UYpWkTqb8m01kiZx
     - You get nice colors and dynamic progress bars!
     - Also, it is just a binary, so you can easily remove it afterward if you don't want it.
   - If you plan to use Docker, please, pre-pull the images with:
-    - `docker pull grafana/k6`
+    - `docker pull grafana/k6:0.47.0
     - `docker pull grafana/k6:0.47.0-with-browser`
 
 ###  0.3.  Run the local playground
@@ -110,7 +110,7 @@ Then, run it with:
 # If you have k6 installed
 k6 run example.js
 # If you don't have k6 installed
-docker run -i --network=pulpocon_default grafana/k6 run -e BASE_URL=http://quickpizza:3333  - <example.js
+docker run -i --network=devfest-santiago_default grafana/k6:0.47.0 run -e BASE_URL=http://quickpizza:3333  - <example.js
 ```
 
 That's it! You have successfully run your first test.
@@ -271,7 +271,7 @@ You can also inspect the status code of the test with:
 echo $?
 
 # If you don't have k6 installed
-docker run -i --network=pulpocon_default grafana/k6 run -e BASE_URL=http://quickpizza:3333  - <example.js; echo $?
+docker run -i --network=devfest-santiago_default grafana/k6:0.47.0 run -e BASE_URL=http://quickpizza:3333  - <example.js; echo $?
 ```
 
 Then, rerun the script.
@@ -356,7 +356,7 @@ You just need to change how you invoke k6, and add the Prometheus output:
 k6 run --out=experimental-prometheus-rw example.js
 
 # If you don't have k6 installed
-docker run -i --network=pulpocon_default grafana/k6 run --out=experimental-prometheus-rw -e BASE_URL=http://quickpizza:3333 -e K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write - <example.js
+docker run -i --network=devfest-santiago_default grafana/k6:0.47.0 run --out=experimental-prometheus-rw -e BASE_URL=http://quickpizza:3333 -e K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write - <example.js
 ```
 
 Then, run the script again. After that, open http://localhost:3000. 
@@ -662,7 +662,7 @@ Then, rerun the script. You should see an additional log line with the pizza nam
 k6 run example.js
 
 # If you don't have k6 installed (you need to mount the extra file)
-docker run -i --network=pulpocon_default -v $(pwd)/utils.js:/utils.js grafana/k6 run -e BASE_URL=http://quickpizza:3333  - <example.js
+docker run -i --network=devfest-santiago_default -v $(pwd)/utils.js:/utils.js grafana/k6:0.47.0 run -e BASE_URL=http://quickpizza:3333  - <example.js
 ```
 
 You can learn more about modules [in our docs](https://k6.io/docs/using-k6/modules/).
@@ -728,7 +728,7 @@ k6 run browser.js
 
 If you want to use Docker, you can:
 ```bash
-docker run -i --network=pulpocon_default --cap-add=SYS_ADMIN grafana/k6:master-with-browser run  -e BASE_URL=http://quickpizza:3333 - <browser.js
+docker run -i --network=devfest-santiago_default --cap-add=SYS_ADMIN grafana/k6:0.47.0-with-browser run  -e BASE_URL=http://quickpizza:3333 - <browser.js
 
 # Find the container ID of that container you just ran
 docker container ls -a
