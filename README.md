@@ -508,10 +508,13 @@ You can learn more about this [in our docs](https://k6.io/docs/results-output/en
 
 We are going to use GitHub Actions to run one of our tests. You can do this in multiple ways (manually installing it, with the Docker container, etc.), but in this case, we are going to use the k6 GitHub Action.
 
-Start by forking this repository  (yup, the pulpocon repo):
+Start by forking this repository  (yup, the devfest-santiago repo). First, click in `Fork`:
+![fork](./media/fork_button.png)
+
+Then, click on `Create fork`.
 ![fork](./media/fork.png)
 
-In the forked repository, go to the Actions tab and click on the green button that enables GitHub Actions.
+In the forked repository, go to the `Actions tab` and click on the green button that enables GitHub Actions.
 ![button](./media/button.png)
 
 After that, you can go to your forked repository and edit the file `.github/workflows/main.yml`:
@@ -520,7 +523,9 @@ After that, you can go to your forked repository and edit the file `.github/work
 Add the following to the file:
 ```yaml
 name: Testing QuickPizza
-on: push
+on: 
+ - push
+ - workflow_dispatch
 
 jobs:
   runner-job:
@@ -548,9 +553,14 @@ This workflow will run every time you push *something* to your repository. It wi
 
 The test is very similar to the one you created earlier.
 
-That's it! For every new commit, GitHub will run your test and tell you if it passed or failed. Using the UI (as we did earlier to change the workflow), modify the README (any change will work), and commit the changes. 
+That's it! For every new commit, GitHub will run your test and tell you if it passed or failed. 
 
-Then, go to the Actions tab and see how the workflow is running.
+Also, because we added the `workflow_dispatch` listener, you can manually trigger the workflow from the UI. You can do that navigating to the Actions tab and finding the workflow you just created. Then, click on the `Run workflow` button.
+
+![trigger](./media/trigger.png)
+
+
+You should see see how the workflow is running.
 
 ![actions](./media/actions.png)
 
